@@ -49,6 +49,8 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
+gallery.insertAdjacentHTML("afterbegin", createMarkup(images));
+gallery.addEventListener("click", clickHandler);
 
 function createMarkup(obj) {
     return obj.map(({ preview, original, description }) =>
@@ -59,7 +61,6 @@ function createMarkup(obj) {
     </li>`
     ).join("");
 };
-gallery.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 function clickHandler(event) {
     event.preventDefault();
@@ -72,7 +73,7 @@ function clickHandler(event) {
     const itemToShow = images.find(({ original }) => original === href);
     const { description } = itemToShow;
     
-    const instance = basicLightBox.create(
+    const instance = basicLightbox.create(
         `<div class="modal">
             <img src="${href}" alt="${description}">
         </div>`
@@ -80,5 +81,5 @@ function clickHandler(event) {
     
     instance.show();
 };
-gallery.addEventListener("click", clickHandler);
+
 
