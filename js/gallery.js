@@ -49,8 +49,6 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
-gallery.addEventListener("click", clickHandler);
-gallery.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 function createMarkup(obj) {
     return obj.map(({ preview, original, description }) =>
@@ -61,6 +59,7 @@ function createMarkup(obj) {
     </li>`
     ).join("");
 };
+gallery.insertAdjacentHTML("afterbegin", createMarkup(images));
 
 function clickHandler(event) {
     event.preventDefault();
@@ -81,3 +80,5 @@ function clickHandler(event) {
     
     instance.show();
 };
+gallery.addEventListener("click", clickHandler);
+
